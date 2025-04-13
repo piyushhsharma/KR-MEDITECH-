@@ -1,4 +1,4 @@
-/* Ensure page stretches to full height and scrolling is smooth */
+/* Universal Reset */
 html, body {
   margin: 0;
   padding: 0;
@@ -7,6 +7,7 @@ html, body {
   scroll-padding-top: calc(4.5rem - 1px);
   font-family: 'Segoe UI', sans-serif;
   overflow-x: hidden;
+  color: #333;
 }
 
 /* Utility classes */
@@ -14,16 +15,26 @@ html, body {
   color: rgba(255, 255, 255, 0.75) !important;
 }
 
+.text-primary {
+  color: #f4623a !important;
+}
+
+/* Button Styles */
 .btn-xl {
   padding: 1.25rem 2.25rem;
-  font-size: 0.85rem;
+  font-size: 1rem;
   font-weight: 700;
   text-transform: uppercase;
   border: none;
-  border-radius: 10rem;
+  border-radius: 5rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.btn-xl:hover {
+  background-color: #f4623a;
+  transform: translateY(-2px);
 }
 
-/* Divider */
+/* Divider Styles */
 hr.divider {
   height: 0.2rem;
   max-width: 3.25rem;
@@ -31,6 +42,7 @@ hr.divider {
   background-color: #f4623a;
   opacity: 1;
 }
+
 hr.divider-light {
   background-color: #fff;
 }
@@ -41,16 +53,20 @@ hr.divider-light {
   background-color: #fff;
   transition: background-color 0.2s ease;
 }
+
 #mainNav .navbar-brand {
   font-weight: 700;
   color: #212529;
 }
+
 #mainNav .navbar-nav .nav-item .nav-link {
   color: #6c757d;
   font-weight: 700;
-  font-size: 0.9rem;
-  padding: 0.75rem 0;
+  font-size: 1rem;
+  padding: 1rem 1rem;
+  transition: color 0.3s ease;
 }
+
 #mainNav .navbar-nav .nav-item .nav-link:hover,
 #mainNav .navbar-nav .nav-item .nav-link:active,
 #mainNav .navbar-nav .nav-item .nav-link.active {
@@ -64,24 +80,21 @@ hr.divider-light {
   #mainNav .navbar-brand {
     color: rgba(255, 255, 255, 0.7);
   }
-  #mainNav .navbar-brand:hover {
-    color: #000;
-  }
   #mainNav .navbar-nav .nav-item .nav-link {
-    padding: 0 1rem;
+    padding: 0 1.5rem;
   }
   #mainNav .navbar-nav .nav-item:last-child .nav-link {
     padding-right: 0;
   }
   #mainNav.navbar-shrink {
     background-color: #fff;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   }
-  #mainNav.navbar-shrink .navbar-brand,
+  #mainNav.navbar-shrink .navbar-brand {
+    color: #212529;
+  }
   #mainNav.navbar-shrink .navbar-nav .nav-item .nav-link {
     color: #212529;
   }
-  #mainNav.navbar-shrink .navbar-brand:hover,
   #mainNav.navbar-shrink .navbar-nav .nav-item .nav-link:hover {
     color: #f4623a;
   }
@@ -93,15 +106,25 @@ header.masthead {
   padding-bottom: 5.5rem;
   height: 60vh;
   min-height: 30rem;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
               url("../assets/webp/bg.webp");
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-size: cover;
+  color: white;
+  text-align: center;
 }
+
 header.masthead h1 {
-  font-size: 3rem !important;
+  font-size: 3.5rem !important;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+header.masthead p {
+  font-size: 1.1rem;
+  font-weight: 400;
 }
 
 @media (max-width: 500px) {
@@ -118,9 +141,6 @@ header.masthead h1 {
     padding-top: 4.5rem;
     padding-bottom: 0;
   }
-  header.masthead p {
-    font-size: 1.15rem;
-  }
   header.masthead h1 {
     font-size: 4rem !important;
   }
@@ -135,13 +155,17 @@ header.masthead h1 {
 .slider-img-size {
   width: 100%;
   height: 600px;
+  object-fit: cover;
 }
+
 @media (max-width: 1199px) {
   .slider-img-size { height: 500px; }
 }
+
 @media (max-width: 991px) {
   .slider-img-size { height: 400px; }
 }
+
 @media (max-width: 599px) {
   .slider-img-size { height: 300px; }
 }
@@ -150,15 +174,25 @@ header.masthead h1 {
 #portfolio .container-fluid {
   max-width: 1920px;
 }
+
 #portfolio .portfolio-box {
   position: relative;
   display: block;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
 }
+
+#portfolio .portfolio-box:hover {
+  transform: translateY(-5px);
+}
+
 #portfolio .portfolio-box-caption {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: rgba(244, 98, 58, 0.9);
+  background: rgba(244, 98, 58, 0.8);
   opacity: 0;
   display: flex;
   align-items: center;
@@ -168,40 +202,57 @@ header.masthead h1 {
   color: #fff;
   text-align: center;
 }
-#portfolio .portfolio-box:hover .portfolio-box-caption {
-  opacity: 1;
-}
-.portfolio-box-caption .project-category {
+
+#portfolio .portfolio-box-caption .project-category {
   font-size: 0.85rem;
   font-weight: 600;
   text-transform: uppercase;
 }
-.portfolio-box-caption .project-name {
+
+#portfolio .portfolio-box-caption .project-name {
   font-size: 1.2rem;
+  font-weight: 600;
 }
 
-/* Notices */
-.notice-responsive h4 {
-  font-size: 1rem !important;
+#portfolio .portfolio-box:hover .portfolio-box-caption {
+  opacity: 1;
 }
+
+/* Notice Section */
+.notice-responsive h4 {
+  font-size: 1.1rem !important;
+}
+
 @media (min-width: 600px) {
   .notice-responsive h4 {
     font-size: 1.2rem !important;
   }
 }
 
-/* Contact Styles */
+/* Contact Section */
 .bg-kontact {
   text-align: center;
-  width: 200px;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
   background: rgba(121, 121, 121, 0.247);
   border: rgba(0, 0, 0, 0.048) 1px solid;
   white-space: nowrap;
   overflow: hidden;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
+
+.bg-kontact h4 {
+  font-size: 1.1rem;
+  color: #333;
+}
+
 .has-m-l {
   margin-left: 50px;
 }
+
 @media (max-width: 1000px) {
   .has-m-l {
     margin-left: 0;
